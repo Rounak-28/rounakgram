@@ -11,7 +11,7 @@ const Navbar = ({ session }: any) => {
 
   if (!session) {
     return (
-      <div className="fixed w-full bg-[#eeebeb] top-0">
+      <div className="fixed w-full bg-[#fafafa] top-0">
         <div className="w-full h-14 flex relative">
           <Link href="/">
             <img src="/ig.png" className="h-14 px-4" alt="" />
@@ -23,7 +23,7 @@ const Navbar = ({ session }: any) => {
   }
 
   return (
-    <div className="fixed w-full bg-[#eeebeb] top-0 z-[50000]">
+    <div className="fixed w-full bg-[#fafafa] top-0 z-[50000]">
       <div className="w-full h-14 flex relative">
         <Link href="/">
           <img src="/ig.png" className="h-14 px-4" alt="" />

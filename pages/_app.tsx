@@ -11,7 +11,7 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <main className={`${inter.className} bg-[#eeebeb]`}>
+      <main className={`${inter.className} bg-[#fafafa]`}>
         {/* <Navbar /> */}
         <Component {...pageProps} />
       </main>

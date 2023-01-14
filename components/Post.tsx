@@ -8,6 +8,7 @@ import Image from "next/image";
 import DeleteModal from "./DeleteModal";
 import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Post = ({
   username,
@@ -71,7 +72,7 @@ const Post = ({
   };
 
   return (
-    <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg">
+    <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg border-2">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
           src={userImage}
@@ -111,7 +112,9 @@ const Post = ({
             onClick={addLike}
           />
         )}
+        <Link href={`post/${id}`}>
         <FaRegComment className="text-2xl hover:text-[#7c7979]" />
+        </Link>
         <FiSend className="text-2xl hover:text-[#7c7979]" />
         <BsBookmark className="text-2xl hover:text-[#7c7979] absolute right-6" />
       </div>

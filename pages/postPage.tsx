@@ -80,7 +80,7 @@ const postPage = () => {
             className="w-8 h-8 rounded-full mx-2"
           ></img>
           <textarea
-            className="border-2 w-80 h-full outline-none p-2 resize-none bg-[#eeebeb]"
+            className="border-2 w-80 h-full outline-none p-2 resize-none bg-[#fafafa]"
             placeholder="write a caption..."
             onChange={changeCaption}
           />

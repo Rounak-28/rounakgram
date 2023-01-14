@@ -31,6 +31,9 @@ const postPage = () => {
       userImage: session?.user?.image,
       description: caption,
       image: data?.path,
+      likes: {
+        likeUsers: []
+      }
     });
 
     // console.log(data)

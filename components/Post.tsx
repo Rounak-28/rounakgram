@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { formatDistance } from "date-fns";
@@ -17,14 +17,15 @@ const Post = ({
   id,
   image,
   fetchData,
+  likes,
 }: any) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isThisUserLiked, setIsThisUserLiked] = useState(false);
   const time = formatDistance(new Date(created_at), new Date(), {
     addSuffix: true,
     includeSeconds: true,
   });
   const { data: session } = useSession();
-
 
   const deletePost = async () => {
     const { error } = await supabase.from("posts").delete().eq("id", id);
@@ -33,7 +34,6 @@ const Post = ({
       .from("postimages")
       .remove([`${image}`]);
 
-    
     if (error) {
       console.log(error);
     }
@@ -43,6 +43,31 @@ const Post = ({
     if (!error && !err) {
       fetchData();
     }
+  };
+  useEffect(() => {
+    likes?.likeUsers?.includes(session?.user?.name)
+      ? setIsThisUserLiked(true)
+      : setIsThisUserLiked(false);
+  }, []);
+
+  const addLike = async () => {
+    likes?.likeUsers?.push(session?.user?.name);
+    setIsThisUserLiked(true);
+    const { data, error } = await supabase
+      .from("posts")
+      .update({ likes: likes })
+      .eq("id", id)
+      .select();
+  };
+
+  const removeLike = async () => {
+    likes?.likeUsers?.pop(username);
+    setIsThisUserLiked(false);
+    const { data, error } = await supabase
+      .from("posts")
+      .update({ likes: likes })
+      .eq("id", id)
+      .select();
   };
 
   return (
@@ -63,7 +88,9 @@ const Post = ({
               : setIsDeleteModalOpen(true)
           }
         />
-        {isDeleteModalOpen && username === session?.user?.name && <DeleteModal deletePost={deletePost} />}
+        {isDeleteModalOpen && username === session?.user?.name && (
+          <DeleteModal deletePost={deletePost} />
+        )}
       </div>
       <Image
         src={`https://gmmwporpmnptcveaewtu.supabase.co/storage/v1/object/public/postimages/${image}`}
@@ -73,11 +100,22 @@ const Post = ({
         alt=""
       />
       <div className="h-14 px-4 flex items-center space-x-5 relative">
-        <AiOutlineHeart className="text-[27px] hover:text-[#7c7979]" />
+        {isThisUserLiked ? (
+          <AiFillHeart
+            className="text-[27px] hover:text-[#7c7979]"
+            onClick={removeLike}
+          />
+        ) : (
+          <AiOutlineHeart
+            className="text-[27px] hover:text-[#7c7979]"
+            onClick={addLike}
+          />
+        )}
         <FaRegComment className="text-2xl hover:text-[#7c7979]" />
         <FiSend className="text-2xl hover:text-[#7c7979]" />
         <BsBookmark className="text-2xl hover:text-[#7c7979] absolute right-6" />
       </div>
+      <p className="px-4 text-sm">{likes?.likeUsers?.length} likes</p>
       <span className="pl-4 pr-2 text-sm font-semibold cursor-pointer">
         {username}
       </span>

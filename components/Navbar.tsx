@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
@@ -35,6 +36,7 @@ const Navbar = ({ session }: any) => {
         <img
           src={session?.user?.image}
           className="w-9 h-9 rounded-full absolute right-4 top-2"
+          onClick={()=> signOut()}
         />
         <div className="line w-full bg-[#00000036] h-[1px] absolute bottom-0"></div>
       </div>

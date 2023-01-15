@@ -31,7 +31,12 @@ const Post = ({
   const deletePost = async () => {
     const { error } = await supabase.from("posts").delete().eq("id", id);
 
-    const { data, err }: any = await supabase.storage
+    const { error:idc } = await supabase
+    .from("comments")
+    .delete()
+    .eq("post_id", id);
+
+    const { data, error:err } = await supabase.storage
       .from("postimages")
       .remove([`${image}`]);
 

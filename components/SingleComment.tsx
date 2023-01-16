@@ -1,7 +1,14 @@
+import { formatDistance } from "date-fns";
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const SingleComment = ({ username, userImage, comment_text, like_count }: any ) => {
+const SingleComment = ({ username, userImage, comment_text, like_count, created_at }: any ) => {
+
+  const time = formatDistance(new Date(created_at), new Date(), {
+    addSuffix: true,
+    includeSeconds: true,
+  });
+
   return (
     <>
       <section className="min-h-[50px] flex px-3 mt-1">
@@ -10,7 +17,7 @@ const SingleComment = ({ username, userImage, comment_text, like_count }: any ) 
         </aside>
         <aside className="w-full mx-2">
           <span className="text-sm font-semibold">{username}</span>
-          <span className="text-sm text-gray-600 mx-3">2d</span>
+          <span className="text-sm text-gray-600 mx-3">{time}</span>
           <p className="text-sm my-1">{comment_text}</p>
           <div className="text-sm text-gray-700 space-x-7">
             <button>Reply</button>

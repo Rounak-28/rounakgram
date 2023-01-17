@@ -15,7 +15,6 @@ const postPage = () => {
   const [caption, setCaption] = useState("");
 
   const post = async () => {
-    
     const { data, err }: any = await supabase.storage
       .from("postimages")
       .upload(`${session?.user?.name}/image${Math.random()}.png`, selectedFile);
@@ -26,8 +25,8 @@ const postPage = () => {
       description: caption,
       image: data?.path,
       likes: {
-        likeUsers: []
-      }
+        likeUsers: [],
+      },
     });
 
     if (error) {
@@ -39,7 +38,6 @@ const postPage = () => {
     if (!error && !err) {
       Router.push("/");
     }
-    
   };
 
   useEffect(() => {

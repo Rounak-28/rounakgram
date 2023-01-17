@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { formatDistance } from "date-fns";
@@ -32,12 +33,12 @@ const Post = ({
   const deletePost = async () => {
     const { error } = await supabase.from("posts").delete().eq("id", id);
 
-    const { error:idc } = await supabase
-    .from("comments")
-    .delete()
-    .eq("post_id", id);
+    const { error: idc } = await supabase
+      .from("comments")
+      .delete()
+      .eq("post_id", id);
 
-    const { data, error:err } = await supabase.storage
+    const { data, error: err } = await supabase.storage
       .from("postimages")
       .remove([`${image}`]);
 
@@ -108,7 +109,7 @@ const Post = ({
       />
       <div className="h-14 px-4 flex items-center space-x-5 relative">
         {isThisUserLiked ? (
-          <AiFillHeart
+          <FcLike
             className="text-[27px] hover:text-[#7c7979]"
             onClick={removeLike}
           />
@@ -119,7 +120,7 @@ const Post = ({
           />
         )}
         <Link href={`post/${id}`}>
-        <FaRegComment className="text-2xl hover:text-[#7c7979]" />
+          <FaRegComment className="text-2xl hover:text-[#7c7979]" />
         </Link>
         <FiSend className="text-2xl hover:text-[#7c7979]" />
         <BsBookmark className="text-2xl hover:text-[#7c7979] absolute right-6" />

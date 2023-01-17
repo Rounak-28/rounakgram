@@ -6,7 +6,6 @@ import { dummyProfile } from "../jotai/atom";
 import Modal from "./Modal";
 import SignoutModal from "./SignoutModal";
 
-
 const Navbar = ({ session }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -14,13 +13,13 @@ const Navbar = ({ session }: any) => {
 
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
-    setIsSignoutModalOpen(false)
-  }
+    setIsSignoutModalOpen(false);
+  };
 
   const openSignoutModal = () => {
     setIsSignoutModalOpen(!isSignputModalOpen);
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
 
   if (!session) {
     return (
@@ -51,7 +50,9 @@ const Navbar = ({ session }: any) => {
           className="w-9 h-9 rounded-full absolute right-4 top-2"
           onClick={openSignoutModal}
         />
-        {isSignputModalOpen && <SignoutModal setIsSignoutModalOpen={setIsSignoutModalOpen} />}
+        {isSignputModalOpen && (
+          <SignoutModal setIsSignoutModalOpen={setIsSignoutModalOpen} />
+        )}
         <div className="line w-full bg-[#00000036] h-[1px] absolute bottom-0"></div>
       </div>
     </div>

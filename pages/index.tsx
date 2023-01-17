@@ -19,7 +19,7 @@ export default function Home() {
       .from("posts")
       .select()
       .order("id", { ascending: false });
-    
+
     setPostData(data);
   };
 
@@ -27,7 +27,7 @@ export default function Home() {
     fetchData();
   }, []);
   // console.log(postData)
-  
+
   if (!session) {
     return (
       <>

@@ -41,6 +41,9 @@ export const authOptions = {
       }
     })
   ],
+  theme: {
+    colorScheme: "light",
+  },
   secret: process.env.NEXTAUTH_SECRET,
 }
 

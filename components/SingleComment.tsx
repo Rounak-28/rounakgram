@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns";
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
+import { dummyProfile } from "../jotai/atom";
 
 const SingleComment = ({ username, userImage, comment_text, like_count, created_at }: any ) => {
 
@@ -13,7 +14,7 @@ const SingleComment = ({ username, userImage, comment_text, like_count, created_
     <>
       <section className="min-h-[50px] flex px-3 mt-1">
         <aside className="w-12 h-12">
-          <img src={userImage} alt="" className="w-10 h-10 rounded-full"></img>
+          <img src={userImage || dummyProfile} alt="" className="w-10 h-10 rounded-full"></img>
         </aside>
         <aside className="w-full mx-2">
           <span className="text-sm font-semibold">{username}</span>

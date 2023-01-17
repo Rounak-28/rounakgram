@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import SingleComment from "../../components/SingleComment";
+import { dummyProfile } from "../../jotai/atom";
 import { supabase } from "../../lib/supabase-client";
 
 const Post = () => {
@@ -83,7 +84,7 @@ const Post = () => {
       <section className="min-h-[100px] flex px-3 space-x-3">
         <aside className="py-3 w-12 h-12">
           <img
-            src={singlePostData[0]?.userImage}
+            src={singlePostData[0]?.userImage || dummyProfile}
             alt=""
             className="w-10 h-10 rounded-full"
           ></img>
@@ -107,8 +108,8 @@ const Post = () => {
         <div className="h-full flex items-center space-x-5">
           <div className="w-14 h-12">
             <img
-              src={session?.user?.image!}
-              className="w-10 h-10 bg-red-600 rounded-full"
+              src={session?.user?.image! || dummyProfile}
+              className="w-10 h-10 rounded-full"
             ></img>
           </div>
           <div className="w-full h-[80%]">

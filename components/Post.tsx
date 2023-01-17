@@ -9,6 +9,7 @@ import DeleteModal from "./DeleteModal";
 import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { dummyProfile } from "../jotai/atom";
 
 const Post = ({
   username,
@@ -80,7 +81,7 @@ const Post = ({
     <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg border-2">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
-          src={userImage}
+          src={userImage || dummyProfile}
           className="w-10 h-10 rounded-full cursor-pointer"
         ></img>
         <p className="mx-3 text-[15px] font-semibold hover:text-[#696767]">

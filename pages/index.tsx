@@ -10,6 +10,7 @@ import { supabase } from "../lib/supabase-client";
 
 export default function Home() {
   const { data: session } = useSession();
+  // console.log(session)
 
   const [postData, setPostData]: any = useAtom(allPostData);
 
@@ -33,11 +34,12 @@ export default function Home() {
         <Navbar session={session} />
         <div className="w-screen h-screen flex justify-center">
           <button
-            className=" bg-[#4ab2f7] rounded-md w-[80%] h-12 mt-36 text-white"
+            className="bg-[#4ab2f7] rounded-md w-[80%] h-12 mt-36 text-white"
             onClick={() => signIn()}
           >
             Login / Signup to access
           </button>
+          {/* <button onClick={() => }>Sign in with Email</button> */}
         </div>
       </>
     );

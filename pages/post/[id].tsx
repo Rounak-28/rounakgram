@@ -7,6 +7,8 @@ import { FiSend } from "react-icons/fi";
 import SingleComment from "../../components/SingleComment";
 import { dummyProfile } from "../../jotai/atom";
 import { supabase } from "../../lib/supabase-client";
+import Lottie from "lottie-react";
+import groovyWalkAnimation from "../../public/groovyWalk.json";
 
 const Post = () => {
   const router = useRouter();
@@ -16,6 +18,8 @@ const Post = () => {
 
   const [singlePostData, setSinglePostData]: any = useState("");
   const [commentsData, setCommentsData] = useState<any[]>([]);
+
+  const [isAllLoaded, setIsAllLoaded] = useState(false);
 
   const fetchSingleData = async () => {
     const { data, error } = await supabase.from("posts").select().eq("id", id);
@@ -37,6 +41,7 @@ const Post = () => {
     setCommentsData(idk);
     setSinglePostData(data);
     setInputText("");
+    setIsAllLoaded(true);
   };
 
   useEffect(() => {
@@ -72,6 +77,14 @@ const Post = () => {
     }
   };
 
+  if (!isAllLoaded) {
+    return (
+      <>
+        <Lottie animationData={groovyWalkAnimation} />;
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen pb-20">
       <nav className="h-14 flex justify-between items-center text-2xl px-4 sticky bg-[#fafafa] top-0">
@@ -87,7 +100,7 @@ const Post = () => {
             src={singlePostData[0]?.userImage || dummyProfile}
             alt=""
             className="w-10 h-10 rounded-full"
-          ></img>
+          />
         </aside>
         <aside className="w-full">
           <span className="text-sm font-semibold">

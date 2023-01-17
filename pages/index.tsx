@@ -39,7 +39,6 @@ export default function Home() {
           >
             Login / Signup to access
           </button>
-          {/* <button onClick={() => }>Sign in with Email</button> */}
         </div>
       </>
     );

@@ -5,11 +5,16 @@ import { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import SingleComment from "../../components/SingleComment";
-import { dummyProfile } from "../../jotai/atom";
+import {
+  dltCommentId,
+  dummyProfile,
+  isDeleteCommentModalOpen,
+} from "../../jotai/atom";
 import { supabase } from "../../lib/supabase-client";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../public/groovyWalk.json";
 import DeleteCommentModal from "../../components/DeleteCommentModal";
+import { useAtom } from "jotai";
 
 const Post = () => {
   const router = useRouter();
@@ -22,7 +27,7 @@ const Post = () => {
 
   const [isAllLoaded, setIsAllLoaded] = useState(false);
 
-  const [deleteCommentId, setDeleteCommentId] = useState()
+  const [deleteCommentId, setDeleteCommentId] = useAtom(dltCommentId);
 
   const fetchSingleData = async () => {
     const { data, error } = await supabase.from("posts").select().eq("id", id);
@@ -57,7 +62,9 @@ const Post = () => {
 
   const [isCmntBtnEnabled, setIsCmntBtnEnabled] = useState(false);
 
-  const [isDeleteCmntModalOpen, setisDeleteCmntModalOpen] = useState(false);
+  const [isDeleteCmntModalOpen, setisDeleteCmntModalOpen] = useAtom(
+    isDeleteCommentModalOpen
+  );
 
   useEffect(() => {
     inputText.length != 0
@@ -82,19 +89,18 @@ const Post = () => {
     }
   };
 
-  const deleteComment =async (comment_id: any)=>{
+  const deleteComment = async (comment_id: any) => {
     const { error } = await supabase
-    .from('comments')
-    .delete()
-    .eq('id', comment_id)
-    if(error){
-      console.log(error)
+      .from("comments")
+      .delete()
+      .eq("id", comment_id);
+    if (error) {
+      console.log(error);
+    } else {
+      fetchSingleData();
+      setisDeleteCmntModalOpen(false);
     }
-    else{
-      fetchSingleData()
-      setisDeleteCmntModalOpen(false)
-    }
-  }
+  };
   // console.log(deleteCommentId)
 
   if (!isAllLoaded) {
@@ -132,22 +138,10 @@ const Post = () => {
       <hr />
       <main>
         {commentsData.map((data: any) => {
-          return (
-            <SingleComment
-              {...data}
-              key={data.id}
-              isDeleteCmntModalOpen={isDeleteCmntModalOpen}
-              setisDeleteCmntModalOpen={setisDeleteCmntModalOpen}
-              setDeleteCommentId={setDeleteCommentId}
-            />
-          );
+          return <SingleComment {...data} key={data.id} />;
         })}
         {isDeleteCmntModalOpen && (
-          <DeleteCommentModal
-            setisDeleteCmntModalOpen={setisDeleteCmntModalOpen}
-            deleteComment={deleteComment}
-            deleteCommentId={deleteCommentId}
-          />
+          <DeleteCommentModal deleteComment={deleteComment} />
         )}
       </main>
       {/* <p>Post: {id}</p> */}

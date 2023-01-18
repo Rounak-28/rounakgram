@@ -1,8 +1,9 @@
 import { formatDistance } from "date-fns";
+import { useAtom } from "jotai";
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { dummyProfile } from "../jotai/atom";
+import { dltCommentId, dummyProfile, isDeleteCommentModalOpen } from "../jotai/atom";
 
 const SingleComment = ({
   username,
@@ -10,14 +11,17 @@ const SingleComment = ({
   comment_text,
   like_count,
   created_at,
-  setisDeleteCmntModalOpen,
+  // setisDeleteCmntModalOpen,
   id,
-  setDeleteCommentId,
+  // setDeleteCommentId,
 }: any) => {
   const time = formatDistance(new Date(created_at), new Date(), {
     addSuffix: true,
     includeSeconds: true,
   });
+
+  const [isDeleteCmntModalOpen, setisDeleteCmntModalOpen] = useAtom(isDeleteCommentModalOpen);
+  const [deleteCommentId, setDeleteCommentId] = useAtom(dltCommentId)
   // console.log(id)
   return (
     <>

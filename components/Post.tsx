@@ -84,7 +84,7 @@ const Post = ({
         <img
           src={userImage || dummyProfile}
           className="w-10 h-10 rounded-full cursor-pointer"
-        ></img>
+        />
         <p className="mx-3 text-[15px] font-semibold hover:text-[#696767]">
           {username}
         </p>

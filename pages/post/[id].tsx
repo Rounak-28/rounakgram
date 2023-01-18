@@ -132,6 +132,7 @@ const Post = () => {
               placeholder="Add a comment..."
               value={inputText}
               onChange={(event) => setInputText(event.target.value)}
+              onKeyDown={(evt) => evt.key === "Enter" && postComment()}
             />
           </div>
           <button

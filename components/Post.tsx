@@ -6,7 +6,7 @@ import { FiSend } from "react-icons/fi";
 import { formatDistance } from "date-fns";
 import { BsBookmark, BsThreeDots } from "react-icons/bs";
 import Image from "next/image";
-import DeleteModal from "./DeleteModal";
+import DeletePostModal from "./DeletePostModal";
 import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -97,7 +97,7 @@ const Post = ({
           }
         />
         {isDeleteModalOpen && username === session?.user?.name && (
-          <DeleteModal deletePost={deletePost} />
+          <DeletePostModal deletePost={deletePost} />
         )}
       </div>
       <Image

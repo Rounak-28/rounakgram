@@ -9,6 +9,7 @@ import { dummyProfile } from "../../jotai/atom";
 import { supabase } from "../../lib/supabase-client";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../public/groovyWalk.json";
+import DeleteCommentModal from "../../components/DeleteCommentModal";
 
 const Post = () => {
   const router = useRouter();
@@ -20,6 +21,8 @@ const Post = () => {
   const [commentsData, setCommentsData] = useState<any[]>([]);
 
   const [isAllLoaded, setIsAllLoaded] = useState(false);
+
+  const [deleteCommentId, setDeleteCommentId] = useState()
 
   const fetchSingleData = async () => {
     const { data, error } = await supabase.from("posts").select().eq("id", id);
@@ -54,6 +57,8 @@ const Post = () => {
 
   const [isCmntBtnEnabled, setIsCmntBtnEnabled] = useState(false);
 
+  const [isDeleteCmntModalOpen, setisDeleteCmntModalOpen] = useState(false);
+
   useEffect(() => {
     inputText.length != 0
       ? setIsCmntBtnEnabled(true)
@@ -77,6 +82,21 @@ const Post = () => {
     }
   };
 
+  const deleteComment =async (comment_id: any)=>{
+    const { error } = await supabase
+    .from('comments')
+    .delete()
+    .eq('id', comment_id)
+    if(error){
+      console.log(error)
+    }
+    else{
+      fetchSingleData()
+      setisDeleteCmntModalOpen(false)
+    }
+  }
+  // console.log(deleteCommentId)
+
   if (!isAllLoaded) {
     return (
       <>
@@ -84,15 +104,14 @@ const Post = () => {
       </>
     );
   }
-
   return (
-    <div className="min-h-screen pb-20">
+    <div className="h-screen pb-20">
       <nav className="h-14 flex justify-between items-center text-2xl px-4 sticky bg-[#fafafa] top-0">
         <Link href="/">
           <BsArrowLeft />
         </Link>
         <span className="text-xl font-semibold">Comments</span>
-        <FiSend />
+        <FiSend className="hover:text-[#7c7979]" />
       </nav>
       <section className="min-h-[100px] flex px-3 space-x-3">
         <aside className="py-3 w-12 h-12">
@@ -111,10 +130,25 @@ const Post = () => {
         </aside>
       </section>
       <hr />
-      <main className="space-y-6">
+      <main>
         {commentsData.map((data: any) => {
-          return <SingleComment {...data} key={data.id} />;
+          return (
+            <SingleComment
+              {...data}
+              key={data.id}
+              isDeleteCmntModalOpen={isDeleteCmntModalOpen}
+              setisDeleteCmntModalOpen={setisDeleteCmntModalOpen}
+              setDeleteCommentId={setDeleteCommentId}
+            />
+          );
         })}
+        {isDeleteCmntModalOpen && (
+          <DeleteCommentModal
+            setisDeleteCmntModalOpen={setisDeleteCmntModalOpen}
+            deleteComment={deleteComment}
+            deleteCommentId={deleteCommentId}
+          />
+        )}
       </main>
       {/* <p>Post: {id}</p> */}
       <footer className="h-16 bg-white border-t-2 fixed w-full bottom-0 pl-2 pr-4">

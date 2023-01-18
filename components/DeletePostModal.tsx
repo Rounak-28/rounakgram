@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const DeleteModal = ({ deletePost }: any) => {
+const DeletePostModal = ({ deletePost }: any) => {
   return (
     <div
       className="absolute top-12 right-4 w-40 h-14 bg-white flex items-center justify-center shadow-md border-2 border-blue-300 rounded-md space-x-2 hover:text-[#5a5757] cursor-pointer"
@@ -13,4 +13,4 @@ const DeleteModal = ({ deletePost }: any) => {
   );
 };
 
-export default DeleteModal;
+export default DeletePostModal;

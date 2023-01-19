@@ -1,4 +1,3 @@
-import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";

@@ -1,4 +1,5 @@
 import { useAtom } from "jotai";
+import React from "react";
 import { dltCommentId, isDeleteCommentModalOpen } from "../jotai/atom";
 
 const DeleteCommentModal = ({ deleteComment }: any) => {

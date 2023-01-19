@@ -33,7 +33,7 @@
     "app/idk/head.js",
     "app/idk/page.js",
     ".next/types/**/*.ts"
-, "zustand/store.ts", "lib/supabase-client.ts"  ],
+, "zustand/store.ts"  ],
   "exclude": [
     "node_modules"
   ]

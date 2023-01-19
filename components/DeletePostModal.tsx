@@ -1,3 +1,4 @@
+import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const DeletePostModal = ({ deletePost }: any) => {

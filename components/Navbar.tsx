@@ -1,11 +1,12 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
-// import { dummyProfile } from "../jotai/atom";
+import { dummyProfile } from "../jotai/atom";
 import Modal from "./Modal";
 import SignoutModal from "./SignoutModal";
 
-const Navbar = ({ userData }: any) => {
+const Navbar = ({ session }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isSignputModalOpen, setIsSignoutModalOpen] = useState(false);
@@ -20,9 +21,7 @@ const Navbar = ({ userData }: any) => {
     setIsModalOpen(false);
   };
 
-  // console.log(userData)
-  
-  if (userData?.session == null) {
+  if (!session) {
     return (
       <div className="fixed w-full bg-[#fafafa] top-0">
         <div className="w-full h-14 flex relative">
@@ -47,7 +46,7 @@ const Navbar = ({ userData }: any) => {
         />
         {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
         <img
-          src={userData?.session?.user?.user_metadata?.picture}
+          src={session?.user?.image || dummyProfile}
           className="w-9 h-9 rounded-full absolute right-4 top-2"
           onClick={openSignoutModal}
         />
@@ -57,7 +56,6 @@ const Navbar = ({ userData }: any) => {
         <div className="line w-full bg-[#00000036] h-[1px] absolute bottom-0"></div>
       </div>
     </div>
-    // <div>sf</div>
   );
 };
 

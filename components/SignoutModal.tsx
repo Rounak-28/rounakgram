@@ -1,18 +1,7 @@
-import Router from "next/router";
-import { supabase } from "../lib/supabase-client";
+import { signOut } from "next-auth/react";
+import React from "react";
 
 const SignoutModal = ({ setIsSignoutModalOpen }: any) => {
-
-const signOut = async()=>{
-const { error} = await supabase.auth.signOut()
-if(error){
-  console.log(error)
-}
-if(!error){
-  Router.reload()
-}
-}
-
   return (
     <div className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-16 right-2 shadow-md rounded-lg flex flex-col px-2 pt-2">
       <button

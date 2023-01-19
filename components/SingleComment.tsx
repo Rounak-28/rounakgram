@@ -1,13 +1,13 @@
 import { formatDistance } from "date-fns";
 import { useAtom } from "jotai";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   dltCommentId,
-  dummyProfile,
   isDeleteCommentModalOpen,
+  userDataAtom,
 } from "../jotai/atom";
 
 const SingleComment = ({
@@ -22,7 +22,9 @@ const SingleComment = ({
     addSuffix: true,
     includeSeconds: true,
   });
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  const [userData, setUserData]: any = useAtom(userDataAtom);
+
 
   const [isBtnEnabled, setIsBtnEnabled] = useState(false);
 
@@ -33,7 +35,7 @@ const SingleComment = ({
   // console.log(id)
 
   useEffect(() => {
-    if (username == session?.user?.name) {
+    if (username == userData?.session?.user?.user_metadata?.name) {
       setIsBtnEnabled(true);
     } else {
       setIsBtnEnabled(false);
@@ -45,7 +47,7 @@ const SingleComment = ({
       <section className="min-h-[50px] flex px-3 my-5">
         <aside className="w-12 h-12">
           <div className="w-10 h-10 rounded-full overflow-hidden mt-3">
-            <img src={userImage || dummyProfile} alt="" />
+            <img src={userImage} alt="" />
           </div>
         </aside>
         <aside className="w-full mx-2">

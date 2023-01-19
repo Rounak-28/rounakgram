@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,8 +7,8 @@ import { FiSend } from "react-icons/fi";
 import SingleComment from "../../components/SingleComment";
 import {
   dltCommentId,
-  dummyProfile,
   isDeleteCommentModalOpen,
+  userDataAtom,
 } from "../../jotai/atom";
 import { supabase } from "../../lib/supabase-client";
 import Lottie from "lottie-react";
@@ -20,14 +20,17 @@ const Post = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const [singlePostData, setSinglePostData]: any = useState("");
   const [commentsData, setCommentsData] = useState<any[]>([]);
 
   const [isAllLoaded, setIsAllLoaded] = useState(false);
 
-  const [deleteCommentId, setDeleteCommentId] = useAtom(dltCommentId);
+  // const [deleteCommentId, setDeleteCommentId] = useAtom(dltCommentId);
+
+  const [userData, setUserData]: any = useAtom(userDataAtom);
+
 
   const fetchSingleData = async () => {
     const { data, error } = await supabase.from("posts").select().eq("id", id);
@@ -72,11 +75,25 @@ const Post = () => {
       : setIsCmntBtnEnabled(false);
   }, [inputText]);
 
+  const getUserData = async () => {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      // console.log(data)
+      setUserData(data);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
   const postComment = async () => {
     const { error } = await supabase.from("comments").insert({
       post_id: id,
-      username: session?.user?.name,
-      userImage: session?.user?.image,
+      username: userData?.session?.user?.user_metadata?.name,
+      userImage: userData?.session?.user?.user_metadata?.picture,
       comment_text: inputText,
       like_count: 0,
     });
@@ -102,6 +119,7 @@ const Post = () => {
     }
   };
   // console.log(deleteCommentId)
+  // console.log(commentsData)
 
   if (!isAllLoaded) {
     return (
@@ -122,7 +140,7 @@ const Post = () => {
       <section className="min-h-[100px] flex px-3 space-x-3">
         <aside className="py-3 w-12 h-12">
           <img
-            src={singlePostData[0]?.userImage || dummyProfile}
+            src={singlePostData[0]?.userImage}
             alt=""
             className="w-10 h-10 rounded-full"
           />
@@ -149,7 +167,7 @@ const Post = () => {
         <div className="h-full flex items-center space-x-5">
           <div className="w-14 h-12">
             <img
-              src={session?.user?.image! || dummyProfile}
+              src={userData?.session?.user?.user_metadata?.picture}
               className="w-10 h-10 rounded-full"
             ></img>
           </div>

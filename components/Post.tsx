@@ -8,9 +8,11 @@ import { BsBookmark, BsThreeDots } from "react-icons/bs";
 import Image from "next/image";
 import DeletePostModal from "./DeletePostModal";
 import { supabase } from "../lib/supabase-client";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { dummyProfile } from "../jotai/atom";
+import { useAtom } from "jotai";
+import { userDataAtom } from "../jotai/atom";
+// import { dummyProfile } from "../jotai/atom";
 
 const Post = ({
   username,
@@ -28,7 +30,8 @@ const Post = ({
     addSuffix: true,
     includeSeconds: true,
   });
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  const [userData, setUserData]: any = useAtom(userDataAtom);
 
   const deletePost = async () => {
     const { error } = await supabase.from("posts").delete().eq("id", id);
@@ -53,13 +56,13 @@ const Post = ({
     }
   };
   useEffect(() => {
-    likes?.likeUsers?.includes(session?.user?.name)
+    likes?.likeUsers?.includes(userData?.session?.user?.user_metadata?.name)
       ? setIsThisUserLiked(true)
       : setIsThisUserLiked(false);
   }, []);
 
   const addLike = async () => {
-    likes?.likeUsers?.push(session?.user?.name);
+    likes?.likeUsers?.push(userData?.session?.user?.user_metadata?.name);
     setIsThisUserLiked(true);
     const { data, error } = await supabase
       .from("posts")
@@ -82,7 +85,7 @@ const Post = ({
     <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg border-2">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
-          src={userImage || dummyProfile}
+          src={userImage}
           className="w-10 h-10 rounded-full cursor-pointer"
         />
         <p className="mx-3 text-[15px] font-semibold hover:text-[#696767]">
@@ -96,7 +99,7 @@ const Post = ({
               : setIsDeleteModalOpen(true)
           }
         />
-        {isDeleteModalOpen && username === session?.user?.name && (
+        {isDeleteModalOpen && username === userData?.session?.user?.user_metadata?.name && (
           <DeletePostModal deletePost={deletePost} />
         )}
       </div>

@@ -2,13 +2,15 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
-import { dummyProfile, postFile } from "../jotai/atom";
+import { postFile, userDataAtom } from "../jotai/atom";
 import Router from "next/router";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { supabase } from "../lib/supabase-client";
 
 const postPage = () => {
-  const { data: session }: any = useSession();
+  // const { data: session }: any = useSession();
+  const [userData, setUserData]: any = useAtom(userDataAtom);
+
 
   const [selectedFile] = useAtom(postFile);
   const [fileBlobUrl, setFileBlobUrl] = useState("");
@@ -17,11 +19,11 @@ const postPage = () => {
   const post = async () => {
     const { data, err }: any = await supabase.storage
       .from("postimages")
-      .upload(`${session?.user?.name}/image${Math.random()}.png`, selectedFile);
+      .upload(`${userData?.session?.user?.user_metadata?.name}/image${Math.random()}.png`, selectedFile);
 
     const { error } = await supabase.from("posts").insert({
-      username: session?.user?.name,
-      userImage: session?.user?.image,
+      username: userData?.session?.user?.user_metadata?.name,
+      userImage: userData?.session?.user?.user_metadata?.picture,
       description: caption,
       image: data?.path,
       likes: {
@@ -65,7 +67,7 @@ const postPage = () => {
       <div>
         <div className="h-24 flex items-center justify-between">
           <img
-            src={session?.user?.image || dummyProfile}
+            src={userData?.session?.user?.user_metadata?.picture}
             className="w-8 h-8 rounded-full mx-2"
           ></img>
           <textarea
@@ -77,7 +79,7 @@ const postPage = () => {
             src={fileBlobUrl}
             alt=""
             className="img max-w-[48px] max-h-[48px] mx-3"
-          ></img>
+          />
         </div>
       </div>
     </div>

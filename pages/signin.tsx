@@ -28,7 +28,7 @@ const signin = () => {
 
   if (!user) {
     return (
-      <div className="px-96 py-20 h-screen">
+      <div className="w-full h-screen px-6 py-4">
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}

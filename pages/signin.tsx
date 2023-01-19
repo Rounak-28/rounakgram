@@ -34,6 +34,7 @@ const signin = () => {
           appearance={{ theme: ThemeSupa }}
           providers={["google", "github"]}
           redirectTo={getURL()}
+          magicLink={true}
         />
       </div>
     );

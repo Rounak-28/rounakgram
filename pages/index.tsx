@@ -39,7 +39,7 @@ export default function Home() {
     getUserData();
   }, []);
   // console.log(postData)
-  // console.log(userData);
+  console.log(userData);
 
   if (userData?.session == null) {
     return (

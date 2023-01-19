@@ -10,7 +10,7 @@ const signin = () => {
 
   useEffect(() => {
     if (user) {
-      router.replace('/account');
+      router.replace('/');
     }
   }, [user]);
 

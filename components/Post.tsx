@@ -97,7 +97,7 @@ const Post = ({
           }
         />
         {isDeleteModalOpen && username === session?.user?.name && (
-          <DeletePostModal deletePost={deletePost} />
+          <DeletePostModal deletePost={deletePost} id={id} setIsDeleteModalOpen={setIsDeleteModalOpen} fetchData={fetchData} />
         )}
       </div>
       <Image

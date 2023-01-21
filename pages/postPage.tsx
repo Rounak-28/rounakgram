@@ -52,8 +52,8 @@ const postPage = () => {
   const changeCaption = (event: any) => setCaption(event.target.value);
 
   return (
-    <div className="h-screen">
-      <div className="topbar flex items-center justify-between border-2 h-12 w-full border-b-[1px] border-b-[#b5b2b2]">
+    <div className="h-screen dark:bg-[#2b333f]">
+      <div className="topbar flex items-center justify-between border-2 h-12 w-full border-b-[1px] dark:border-none border-b-[#b5b2b2]">
         <Link href="/">
           <AiOutlineLeft className="text-3xl ml-2" />
         </Link>
@@ -69,7 +69,7 @@ const postPage = () => {
             className="w-8 h-8 rounded-full mx-2"
           ></img>
           <textarea
-            className="border-2 w-80 h-full outline-none p-2 resize-none bg-[#fafafa]"
+            className="border-2 w-80 h-full outline-none p-2 resize-none bg-[#fafafa] dark:bg-slate-700 dark:border-gray-800"
             placeholder="write a caption..."
             onChange={changeCaption}
           />

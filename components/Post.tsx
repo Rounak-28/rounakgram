@@ -145,7 +145,9 @@ const Post = ({
         {username}
       </span>
       <span className="text-sm">{description}</span>
-      <p className="text-sm px-4 my-2 text-[#5b5858] dark:text-gray-300">{time.toUpperCase()}</p>
+      <p className="text-sm px-4 my-2 text-[#5b5858] dark:text-gray-300">
+        {time.toUpperCase()}
+      </p>
     </div>
   );
 };

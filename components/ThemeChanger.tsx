@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 const ThemeChanger = () => {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   const toggleTheme = () => {
@@ -20,7 +20,7 @@ const ThemeChanger = () => {
 
   return (
     <div
-      className="absolute right-36 top-[14px] text-2xl"
+      className="text-2xl"
       onClick={toggleTheme}
     >
       {theme == "light" && <BsFillSunFill />}

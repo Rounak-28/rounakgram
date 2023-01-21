@@ -33,7 +33,7 @@ const Modal = ({ setIsModalOpen }: any) => {
       )}
       <div className="btns flex justify-between w-full absolute bottom-2 left-0 px-2">
         <button
-          className="border-2 bg-gray-100 dark:bg-[#1e293b] w-20 h-9 rounded hover:bg-gray-200"
+          className="border-2 bg-gray-100 dark:bg-[#1e293b] w-20 h-9 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
           onClick={() => setIsModalOpen(false)}
         >
           Cancel

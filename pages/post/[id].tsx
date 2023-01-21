@@ -112,22 +112,24 @@ const Post = () => {
     );
   }
 
-  let altArray = singlePostData[0]?.username?.split(" ");
   let alt: string = "";
-  for (let idk in altArray) {
-    alt += altArray[idk]?.slice(0, 1);
+  if (singlePostData) {
+    let altArray = singlePostData[0]?.username?.split(" ");
+    for (let idk in altArray) {
+      alt += altArray[idk]?.slice(0, 1);
+    }
   }
 
   return (
-    <div className="h-screen pb-20">
-      <nav className="h-14 flex justify-between items-center text-2xl px-4 sticky bg-[#fafafa] top-0">
+    <div className="min-h-screen pb-20 dark:bg-[#1e293b]">
+      <nav className="h-14 flex justify-between items-center text-2xl px-4 sticky bg-[#fafafa] dark:bg-[#1e293b] top-0">
         <Link href="/">
           <BsArrowLeft />
         </Link>
         <span className="text-xl font-semibold">Comments</span>
         <FiSend className="hover:text-[#7c7979]" />
       </nav>
-      <section className="min-h-[100px] flex px-3 space-x-3">
+      <section className="min-h-[80px] flex px-3 space-x-3">
         <aside className="py-3 w-12 h-12">
           <img
             src={singlePostData[0]?.userImage || dummyProfile}
@@ -139,11 +141,13 @@ const Post = () => {
           <span className="text-sm font-semibold">
             {singlePostData[0]?.username}
           </span>
-          <span className="text-sm text-gray-600 mx-3">2d</span>
+          <span className="text-sm text-gray-600 dark:text-gray-300 mx-3">
+            2d
+          </span>
           <p className="text-sm my-1">{singlePostData[0]?.description}</p>
         </aside>
       </section>
-      <hr />
+      <div className="hr w-full h-[1px] bg-gray-100 dark:bg-slate-700"></div>
       <main>
         {commentsData.map((data: any) => {
           return <SingleComment {...data} key={data.id} />;
@@ -153,7 +157,7 @@ const Post = () => {
         )}
       </main>
       {/* <p>Post: {id}</p> */}
-      <footer className="h-16 bg-white border-t-2 fixed w-full bottom-0 pl-2 pr-4">
+      <footer className="h-16 bg-white border-t-2 dark:border-t-slate-700 fixed w-full bottom-0 pl-2 pr-4 dark:bg-[#1e293b]">
         <div className="h-full flex items-center space-x-5">
           <div className="w-14 h-12">
             <img
@@ -164,7 +168,7 @@ const Post = () => {
           <div className="w-full h-[80%]">
             <input
               type="text"
-              className="w-full h-full indent-1 outline-none"
+              className="w-full h-full indent-2 outline-none rounded-sm dark:bg-slate-700 dark:border-gray-800"
               placeholder="Add a comment..."
               value={inputText}
               onChange={(event) => setInputText(event.target.value)}

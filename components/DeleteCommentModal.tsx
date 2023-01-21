@@ -16,17 +16,17 @@ const DeleteCommentModal = ({ deleteComment }: any) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.1 }}
           exit={{ opacity: 0 }}
-          className="w-80 border-2 border-blue-300 rounded-xl bg-white text-xl flex flex-col overflow-hidden"
+          className="w-80 border-2 dark:border-[1px] border-blue-300 dark:border-gray-200 rounded-xl bg-white   dark:bg-[#1e293b] text-xl flex flex-col overflow-hidden"
         >
           <button
-            className="text-red-500 hover:bg-gray-300 w-full h-12"
+            className="text-red-500 hover:bg-gray-300 dark:hover:bg-[#344867] w-full h-12"
             onClick={() => deleteComment(deleteCommentId)}
           >
             Delete
           </button>
           <hr />
           <button
-            className="hover:bg-gray-300 w-full h-12"
+            className="hover:bg-gray-300 dark:hover:bg-[#344867] w-full h-12"
             onClick={() => setisDeleteCmntModalOpen(false)}
           >
             Cancel

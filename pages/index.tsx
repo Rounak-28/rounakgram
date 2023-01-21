@@ -28,14 +28,13 @@ export default function Home() {
   }, []);
   // console.log(postData)
 
-
   if (!session) {
     return (
       <>
         <Navbar session={session} />
-        <div className="w-screen h-screen flex justify-center">
+        <div className="w-screen h-screen flex justify-center dark:bg-[#2b333f]">
           <button
-            className="bg-[#4ab2f7] rounded-md w-[80%] h-12 mt-36 text-white"
+            className="bg-[#4ab2f7] dark:bg-[#114394] dark:hover:bg-[#032f77] rounded-md w-[80%] h-12 mt-36 text-white"
             onClick={() => signIn()}
           >
             Login / Signup to access

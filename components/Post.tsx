@@ -11,6 +11,7 @@ import { supabase } from "../lib/supabase-client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { dummyProfile } from "../jotai/atom";
+import { AnimatePresence } from "framer-motion";
 
 const Post = ({
   username,
@@ -78,14 +79,14 @@ const Post = ({
       .select();
   };
 
-let altArray = username.split(" ")
-let alt: string = ""
-for(let idk in altArray){
-  alt += altArray[idk].slice(0, 1)
-}
+  let altArray = username.split(" ");
+  let alt: string = "";
+  for (let idk in altArray) {
+    alt += altArray[idk].slice(0, 1);
+  }
 
   return (
-    <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg border-2">
+    <div className="w-full bg-[#ffffff] rounded-lg outline outline-1 outline-gray-400 dark:bg-[#1e293b]">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
           src={userImage || dummyProfile}
@@ -103,9 +104,16 @@ for(let idk in altArray){
               : setIsDeleteModalOpen(true)
           }
         />
-        {isDeleteModalOpen && username === session?.user?.name && (
-          <DeletePostModal deletePost={deletePost} id={id} setIsDeleteModalOpen={setIsDeleteModalOpen} fetchData={fetchData} />
-        )}
+        <AnimatePresence>
+          {isDeleteModalOpen && username === session?.user?.name && (
+            <DeletePostModal
+              deletePost={deletePost}
+              id={id}
+              setIsDeleteModalOpen={setIsDeleteModalOpen}
+              fetchData={fetchData}
+            />
+          )}
+        </AnimatePresence>
       </div>
       <Image
         src={`https://gmmwporpmnptcveaewtu.supabase.co/storage/v1/object/public/postimages/${image}`}
@@ -137,7 +145,7 @@ for(let idk in altArray){
         {username}
       </span>
       <span className="text-sm">{description}</span>
-      <p className="text-sm px-4 my-2 text-[#5b5858]">{time.toUpperCase()}</p>
+      <p className="text-sm px-4 my-2 text-[#5b5858] dark:text-gray-300">{time.toUpperCase()}</p>
     </div>
   );
 };

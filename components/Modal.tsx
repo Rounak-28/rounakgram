@@ -21,7 +21,9 @@ const Modal = ({ setIsModalOpen }: any) => {
   return (
     <motion.div
       animate={{ y: 60 }}
-      className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-0 right-10 shadow-md rounded-lg flex flex-col p-2"
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0 }}
+      className="w-56 h-28 bg-white dark:bg-[#1e293b] border-2 border-blue-300 absolute top-0 right-10 shadow-md rounded-lg flex flex-col p-2"
     >
       <input type="file" className="w-full" onChange={inputChangeHandler} />
       {!isFilePicked && (
@@ -31,14 +33,15 @@ const Modal = ({ setIsModalOpen }: any) => {
       )}
       <div className="btns flex justify-between w-full absolute bottom-2 left-0 px-2">
         <button
-          className="border-2 bg-gray-100 w-20 h-9 rounded hover:bg-gray-200"
+          className="border-2 bg-gray-100 dark:bg-[#1e293b] w-20 h-9 rounded hover:bg-gray-200"
           onClick={() => setIsModalOpen(false)}
         >
           Cancel
         </button>
         <Link href="/postPage">
           <button
-            className="bg-blue-500 hover:bg-blue-600 w-20 h-9 rounded text-white font-semibold"
+            className="bg-blue-500 dark:bg-[#114394] hover:bg-blue-600
+            dark:hover:bg-[#032f77] w-20 h-9 rounded text-white font-semibold"
             disabled={!isPostBtnEnabled}
             onClick={handlePost}
           >

@@ -1,12 +1,16 @@
-import { signOut } from "next-auth/react";
+import { AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiPlusSquare } from "react-icons/fi";
 import { dummyProfile } from "../jotai/atom";
 import Modal from "./Modal";
 import SignoutModal from "./SignoutModal";
+import ThemeChanger from "./ThemeChanger";
 
 const Navbar = ({ session }: any) => {
+  const { theme, setTheme } = useTheme();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isSignputModalOpen, setIsSignoutModalOpen] = useState(false);
@@ -23,11 +27,15 @@ const Navbar = ({ session }: any) => {
 
   if (!session) {
     return (
-      <div className="fixed w-full bg-[#fafafa] top-0">
+      <div className="fixed w-full bg-[#fafafa] dark:bg-[#0f172a] top-0 z-[50000]">
         <div className="w-full h-14 flex relative">
-          <Link href="/">
+        <Link href="/">
+          {theme == "light" ? (
             <img src="/ig.png" className="h-14 px-4" alt="" />
-          </Link>
+          ) : (
+            <img src="/ig-white.png" className="h-14 px-4" alt="" />
+          )}
+        </Link>
           <div className="line w-full bg-[#00000036] h-[1px] absolute bottom-0"></div>
         </div>
       </div>
@@ -35,24 +43,33 @@ const Navbar = ({ session }: any) => {
   }
 
   return (
-    <div className="fixed w-full bg-[#fafafa] top-0 z-[50000]">
+    <div className="fixed w-full bg-[#fafafa] dark:bg-[#0f172a] top-0 z-[50000]">
       <div className="w-full h-14 flex relative">
         <Link href="/">
-          <img src="/ig.png" className="h-14 px-4" alt="" />
+          {theme == "light" ? (
+            <img src="/ig.png" className="h-14 px-4" alt="" />
+          ) : (
+            <img src="/ig-white.png" className="h-14 px-4" alt="" />
+          )}
         </Link>
+        <ThemeChanger />
         <FiPlusSquare
           className="absolute right-20 top-3 text-3xl"
           onClick={openModal}
         />
-        {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+        <AnimatePresence>
+          {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+        </AnimatePresence>
         <img
           src={session?.user?.image || dummyProfile}
           className="w-9 h-9 rounded-full absolute right-4 top-2"
           onClick={openSignoutModal}
         />
-        {isSignputModalOpen && (
-          <SignoutModal setIsSignoutModalOpen={setIsSignoutModalOpen} />
-        )}
+        <AnimatePresence>
+          {isSignputModalOpen && (
+            <SignoutModal setIsSignoutModalOpen={setIsSignoutModalOpen} />
+          )}
+        </AnimatePresence>
         <div className="line w-full bg-[#00000036] h-[1px] absolute bottom-0"></div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <>
       <Navbar session={session} />
-      <div className="w-screen flex flex-col space-y-3 justify-center min-h-screen max-w-[500px] px-2 py-2 mt-14">
+      <div className="w-screen flex flex-col space-y-3 justify-center min-h-screen max-w-[500px] px-2 py-2 mt-14 dark:bg-[#2b333f]">
         {postData.map((post: any) => {
           return <Post {...post} key={post.id} fetchData={fetchData} />;
         })}

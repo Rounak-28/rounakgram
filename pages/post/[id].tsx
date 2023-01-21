@@ -15,6 +15,7 @@ import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../public/groovyWalk.json";
 import DeleteCommentModal from "../../components/DeleteCommentModal";
 import { useAtom } from "jotai";
+import { AnimatePresence } from "framer-motion";
 
 const Post = () => {
   const router = useRouter();
@@ -110,6 +111,13 @@ const Post = () => {
       </>
     );
   }
+
+  let altArray = singlePostData[0]?.username?.split(" ");
+  let alt: string = "";
+  for (let idk in altArray) {
+    alt += altArray[idk]?.slice(0, 1);
+  }
+
   return (
     <div className="h-screen pb-20">
       <nav className="h-14 flex justify-between items-center text-2xl px-4 sticky bg-[#fafafa] top-0">
@@ -123,8 +131,8 @@ const Post = () => {
         <aside className="py-3 w-12 h-12">
           <img
             src={singlePostData[0]?.userImage || dummyProfile}
-            alt=""
-            className="w-10 h-10 rounded-full"
+            alt={alt}
+            className="w-10 h-10 rounded-full flex justify-center items-center outline outline-1 outline-blue-300"
           />
         </aside>
         <aside className="w-full">

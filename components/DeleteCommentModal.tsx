@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
-import React from "react";
 import { dltCommentId, isDeleteCommentModalOpen } from "../jotai/atom";
+import { AnimatePresence, motion } from "framer-motion";
 
 const DeleteCommentModal = ({ deleteComment }: any) => {
   const [isDeleteCmntModalOpen, setisDeleteCmntModalOpen] = useAtom(
@@ -10,21 +10,29 @@ const DeleteCommentModal = ({ deleteComment }: any) => {
 
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center backdrop-brightness-50 z-[50000]">
-      <div className="w-80 border-2 border-blue-300 rounded-xl bg-white text-xl flex flex-col overflow-hidden">
-        <button
-          className="text-red-500 hover:bg-gray-300 w-full h-12"
-          onClick={() => deleteComment(deleteCommentId)}
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.1 }}
+          exit={{ opacity: 0 }}
+          className="w-80 border-2 border-blue-300 rounded-xl bg-white text-xl flex flex-col overflow-hidden"
         >
-          Delete
-        </button>
-        <hr />
-        <button
-          className="hover:bg-gray-300 w-full h-12"
-          onClick={() => setisDeleteCmntModalOpen(false)}
-        >
-          Cancel
-        </button>
-      </div>
+          <button
+            className="text-red-500 hover:bg-gray-300 w-full h-12"
+            onClick={() => deleteComment(deleteCommentId)}
+          >
+            Delete
+          </button>
+          <hr />
+          <button
+            className="hover:bg-gray-300 w-full h-12"
+            onClick={() => setisDeleteCmntModalOpen(false)}
+          >
+            Cancel
+          </button>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

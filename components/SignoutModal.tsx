@@ -1,9 +1,14 @@
 import { signOut } from "next-auth/react";
-import React from "react";
+import { motion } from "framer-motion";
 
 const SignoutModal = ({ setIsSignoutModalOpen }: any) => {
   return (
-    <div className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-16 right-2 shadow-md rounded-lg flex flex-col px-2 pt-2">
+    <motion.div
+      animate={{ y: 60 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0 }}
+      className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-0 right-2 shadow-md rounded-lg flex flex-col px-2 pt-2"
+    >
       <button
         className="bg-blue-500 text-white py-2 rounded"
         onClick={() => signOut()}
@@ -16,7 +21,7 @@ const SignoutModal = ({ setIsSignoutModalOpen }: any) => {
       >
         Cancel
       </button>
-    </div>
+    </motion.div>
   );
 };
 

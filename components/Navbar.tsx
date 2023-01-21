@@ -63,7 +63,7 @@ const Navbar = ({ session }: any) => {
             <img src="/ig-white.png" className="h-14 px-4" alt="" />
           )}
         </Link>
-        <div className="absolute right-36 top-[14px] ">
+        <div className="absolute right-36 top-[14px]">
           <ThemeChanger />
         </div>
         <FiPlusSquare

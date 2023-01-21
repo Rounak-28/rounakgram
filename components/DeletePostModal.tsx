@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import EditPost from "./EditPost";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const DeletePostModal = ({
   deletePost,
@@ -34,14 +34,16 @@ const DeletePostModal = ({
           <span>Edit Post</span>
         </div>
       </motion.div>
-      {isEditPostModalOpen && (
-        <EditPost
-          setIsEditPostModalOpen={setIsEditPostModalOpen}
-          id={id}
-          setIsDeleteModalOpen={setIsDeleteModalOpen}
-          fetchData={fetchData}
-        />
-      )}
+      <AnimatePresence>
+        {isEditPostModalOpen && (
+          <EditPost
+            setIsEditPostModalOpen={setIsEditPostModalOpen}
+            id={id}
+            setIsDeleteModalOpen={setIsDeleteModalOpen}
+            fetchData={fetchData}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

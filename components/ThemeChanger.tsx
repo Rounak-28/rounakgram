@@ -19,10 +19,7 @@ const ThemeChanger = () => {
   };
 
   return (
-    <div
-      className="text-2xl"
-      onClick={toggleTheme}
-    >
+    <div className="text-2xl" onClick={toggleTheme}>
       {theme == "dark" ? <BsFillMoonFill /> : <BsFillSunFill />}
     </div>
   );

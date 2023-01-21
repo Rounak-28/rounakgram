@@ -1,7 +1,6 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { FiMoon, FiSun } from "react-icons/fi";
 
 const ThemeChanger = () => {
   const [mounted, setMounted] = useState(false);
@@ -24,8 +23,7 @@ const ThemeChanger = () => {
       className="text-2xl"
       onClick={toggleTheme}
     >
-      {theme == "light" && <FiSun />}
-      {theme == "dark" && <FiMoon />}
+      {theme == "dark" ? <BsFillMoonFill /> : <BsFillSunFill />}
     </div>
   );
 };

@@ -2,25 +2,27 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { postFile } from "../jotai/atom";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const Modal = ({ setIsModalOpen }: any) => {
-  const [selectedFile, setSelectedFile] = useAtom(postFile)
+  const [selectedFile, setSelectedFile] = useAtom(postFile);
   // const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [isPostBtnEnabled, setIsPostBtnEnabled] = useState(false);
-
 
   const inputChangeHandler = (event: any) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
     setIsPostBtnEnabled(true);
   };
-  
+
   const handlePost = () => {};
 
   return (
-    <motion.div animate={{ y: 60 }} className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-0 right-10 shadow-md rounded-lg flex flex-col p-2">
+    <motion.div
+      animate={{ y: 60 }}
+      className="w-56 h-28 bg-white border-2 border-blue-300 absolute top-0 right-10 shadow-md rounded-lg flex flex-col p-2"
+    >
       <input type="file" className="w-full" onChange={inputChangeHandler} />
       {!isFilePicked && (
         <span className="text-red-500 text-[13px] mb-3 mx-2">

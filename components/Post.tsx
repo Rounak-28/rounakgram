@@ -78,12 +78,19 @@ const Post = ({
       .select();
   };
 
+let altArray = username.split(" ")
+let alt: string = ""
+for(let idk in altArray){
+  alt += altArray[idk].slice(0, 1)
+}
+
   return (
     <div className="w-full border-y-[1px] bg-[#ffffff] rounded-lg border-2">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
           src={userImage || dummyProfile}
-          className="w-10 h-10 rounded-full cursor-pointer"
+          className="w-10 h-10 rounded-full cursor-pointer flex justify-center items-center outline outline-1 outline-blue-200"
+          alt={alt}
         />
         <p className="mx-3 text-[15px] font-semibold hover:text-[#696767]">
           {username}

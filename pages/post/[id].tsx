@@ -107,7 +107,10 @@ const Post = () => {
   if (!isAllLoaded) {
     return (
       <>
-        <Lottie animationData={groovyWalkAnimation} />;
+        <Lottie
+          animationData={groovyWalkAnimation}
+          className="dark:bg-[#1e293b] h-screen"
+        />
       </>
     );
   }

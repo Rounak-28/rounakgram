@@ -38,10 +38,10 @@ const Navbar = ({ session }: any) => {
       <div className="fixed w-full bg-[#fafafa] dark:bg-[#0f172a] top-0 z-[50000]">
         <div className="w-full h-14 flex relative">
           <Link href="/">
-            {theme == "dark" ? (
-              <img src="/ig-white.png" className="h-14 px-4" alt="" />
+            {theme == "light" ? (
+              <img src="logo-light.svg" className="h-14 w-44 px-4" alt="" />
             ) : (
-              <img src="/ig.png" className="h-14 px-4" alt="" />
+              <img src="logo-dark.svg" className="h-14 w-44 px-4" alt="" />
             )}
           </Link>
           <div className="absolute right-8 top-[14px] ">
@@ -58,9 +58,9 @@ const Navbar = ({ session }: any) => {
       <div className="w-full h-14 flex relative">
         <Link href="/">
           {theme == "light" ? (
-            <img src="/ig.png" className="h-14 px-4" alt="" />
+            <img src="logo-light.svg" className="h-14 w-44 px-4" alt="" />
           ) : (
-            <img src="/ig-white.png" className="h-14 px-4" alt="" />
+            <img src="logo-dark.svg" className="h-14 w-44 px-4" alt="" />
           )}
         </Link>
         <div className="absolute right-36 top-[14px]">

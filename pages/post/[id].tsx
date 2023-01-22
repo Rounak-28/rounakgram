@@ -155,9 +155,11 @@ const Post = () => {
         {commentsData.map((data: any) => {
           return <SingleComment {...data} key={data.id} />;
         })}
-        {isDeleteCmntModalOpen && (
-          <DeleteCommentModal deleteComment={deleteComment} />
-        )}
+        <AnimatePresence>
+          {isDeleteCmntModalOpen && (
+            <DeleteCommentModal deleteComment={deleteComment} />
+          )}
+        </AnimatePresence>
       </main>
       {/* <p>Post: {id}</p> */}
       <footer className="h-16 bg-white border-t-2 dark:border-t-slate-700 fixed w-full bottom-0 pl-2 pr-4 dark:bg-[#1e293b]">

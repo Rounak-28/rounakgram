@@ -9,8 +9,8 @@ const DeleteCommentModal = ({ deleteComment }: any) => {
   const [deleteCommentId, setDeleteCommentId] = useAtom(dltCommentId);
 
   return (
-    <div className="w-[100vw] h-[100vh] fixed top-0 left-0 flex justify-center items-center backdrop-brightness-50 z-[50000]">
-      <AnimatePresence>
+    <AnimatePresence>
+      <div className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center backdrop-brightness-50 z-[50000]">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -32,8 +32,8 @@ const DeleteCommentModal = ({ deleteComment }: any) => {
             Cancel
           </button>
         </motion.div>
-      </AnimatePresence>
-    </div>
+      </div>
+    </AnimatePresence>
   );
 };
 

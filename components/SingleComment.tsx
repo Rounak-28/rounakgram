@@ -50,7 +50,9 @@ const SingleComment = ({
         </aside>
         <aside className="w-full mx-2">
           <span className="text-sm font-semibold">{username}</span>
-          <span className="text-sm text-gray-600 dark:text-gray-300 mx-3">{time}</span>
+          <span className="text-sm text-gray-600 dark:text-gray-300 mx-3">
+            {time}
+          </span>
           <p className="text-sm my-1">{comment_text}</p>
           <div className="text-sm text-gray-700 dark:text-gray-300 space-x-7">
             <button>Reply</button>

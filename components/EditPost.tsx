@@ -28,7 +28,7 @@ const EditPost = ({
   return (
     <div className="w-full h-52 z-[9999999] absolute top-24 left-0">
       <motion.div
-        initial={{ x: 100 }}
+        initial={{ x: 40 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.2 }}
         exit={{ opacity: 0 }}

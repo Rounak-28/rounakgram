@@ -10,7 +10,7 @@ import ThemeChanger from "./ThemeChanger";
 
 const Navbar = ({ session }: any) => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isSignputModalOpen, setIsSignoutModalOpen] = useState(false);
@@ -26,11 +26,11 @@ const Navbar = ({ session }: any) => {
   };
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   if (!session) {

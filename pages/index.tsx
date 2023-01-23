@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <>
       <Navbar session={session} />
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 lg:gap-5 content-between space-y-3 min-h-screen max-w-[500px] lg:max-w-none px-2 py-2 mt-14 dark:bg-[#2b333f] mx-auto">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 lg:gap-5 content-between space-y-3 lg:space-y-0 min-h-screen max-w-[500px] lg:max-w-none px-2 py-2 mt-14 dark:bg-[#2b333f] mx-auto">
         {postData.map((post: any) => {
           return <Post {...post} key={post.id} fetchData={fetchData} />;
         })}

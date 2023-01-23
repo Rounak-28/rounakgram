@@ -86,7 +86,7 @@ const Post = ({
   }
 
   return (
-    <div className="w-full max-w-[420px] bg-[#ffffff] rounded-lg outline outline-1 outline-gray-400 dark:bg-[#1e293b] mx-auto">
+    <div className="w-full h-[650px] max-w-[420px] bg-[#ffffff] rounded-lg outline outline-1 outline-gray-400 dark:bg-[#1e293b] mx-auto">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
           src={userImage || dummyProfile}
@@ -117,7 +117,7 @@ const Post = ({
       </div>
       <Image
         src={`https://gmmwporpmnptcveaewtu.supabase.co/storage/v1/object/public/postimages/${image}`}
-        className="w-full lg:max-h-[400px]"
+        className="w-full lg:max-h-[450px]"
         width={300}
         height={0}
         alt=""

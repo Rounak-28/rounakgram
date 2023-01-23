@@ -2,7 +2,6 @@
 ## Live preview
 https://rounakgram.vercel.app
 
-<br/>
 
 # Project Description
 

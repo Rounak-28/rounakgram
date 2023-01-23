@@ -1,3 +1,9 @@
+
+## Live preview
+https://rounakgram.vercel.app
+
+<br/>
+
 # Project Description
 
 This is a social media app (inspired from instagram) made by me using next.js
@@ -37,7 +43,3 @@ This is a social media app (inspired from instagram) made by me using next.js
 • Framer-motion for trasition effects
 
 • Jotai for state management
-
-
-## Live preview
-https://rounakgram.vercel.app/

@@ -141,14 +141,16 @@ const Post = ({
         <BsBookmark className="text-2xl hover:text-[#7c7979] absolute right-6" />
       </div>
       <Link href={`post/${id}`}>
-      <p className="px-4 text-sm">{likes?.likeUsers?.length} likes</p>
-      <span className="pl-4 pr-2 text-sm font-semibold cursor-pointer">
-        {username}
-      </span>
-      <span className="text-sm">{description}</span>
-      <p className="text-sm px-4 my-2 text-[#5b5858] dark:text-gray-300">
-        {time.toUpperCase()}
-      </p>
+        <p className="px-4 text-sm">{likes?.likeUsers?.length} likes</p>
+        <p className="text-sm px-4">
+          <span className="pr-2 text-sm font-semibold cursor-pointer">
+            {username}
+          </span>
+          {description}
+        </p>
+        <p className="text-sm px-4 my-2 lg:my-3 text-[#5b5858] dark:text-gray-300">
+          {time.toUpperCase()}
+        </p>
       </Link>
     </div>
   );

@@ -24,3 +24,20 @@ This is a social media app (inspired from instagram) made by me using next.js
 • comment on a post
 <br/>&ensp;&ensp;&ensp;
 • delete own comment
+
+## Tech stack
+• Next.js
+
+• Next-themes
+
+• Next-auth.js for authentication
+
+• Supabase for database and file storage
+
+• Framer-motion for trasition effects
+
+• Jotai for state management
+
+
+## Live preview
+https://rounakgram.vercel.app/

@@ -86,7 +86,7 @@ const Post = ({
   }
 
   return (
-    <div className="w-full h-[650px] max-w-[420px] bg-[#ffffff] rounded-lg outline outline-1 outline-gray-400 dark:bg-[#1e293b] mx-auto">
+    <div className="w-full lg:h-[650px] max-w-[420px] bg-[#ffffff] rounded-lg outline outline-1 outline-gray-400 dark:bg-[#1e293b] mx-auto">
       <div className="top w-full h-14 flex items-center px-4 relative">
         <img
           src={userImage || dummyProfile}

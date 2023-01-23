@@ -13,7 +13,7 @@ export default function App({
   return (
     <ThemeProvider attribute="class">
       <SessionProvider session={session}>
-        <main className={`${inter.className} bg-[#fafafa]`}>
+        <main className={`${inter.className} bg-[#fafafa] dark:bg-[#2b333f]`}>
           <Component {...pageProps} />
         </main>
       </SessionProvider>
